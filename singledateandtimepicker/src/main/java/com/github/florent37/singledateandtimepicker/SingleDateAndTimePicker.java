@@ -427,22 +427,13 @@ public class SingleDateAndTimePicker extends LinearLayout {
             final Date dayDate = daysPicker.getCurrentDate();
             calendar.setTime(dayDate);
         } else {
-            if (displayMonth) {
-                calendar.set(Calendar.MONTH, monthPicker.getCurrentMonth());
-            }
-
-            if (displayYears) {
-                calendar.set(Calendar.YEAR, yearsPicker.getCurrentYear());
-            }
-
-            if (displayDaysOfMonth) {
-                int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-                if (daysOfMonthPicker.getCurrentDay() >= daysInMonth) {
-                    calendar.set(Calendar.DAY_OF_MONTH, daysInMonth);
-                } else {
-                    calendar.set(Calendar.DAY_OF_MONTH, daysOfMonthPicker.getCurrentDay() + 1);
-                }
-            }
+            calendar.set(Calendar.YEAR, yearsPicker.getCurrentYear());
+            calendar.set(Calendar.MONTH, monthPicker.getCurrentMonth());
+            int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+            if (daysOfMonthPicker.getCurrentDay() >= daysInMonth)
+                calendar.set(Calendar.DAY_OF_MONTH, daysInMonth);
+            else
+                calendar.set(Calendar.DAY_OF_MONTH, daysOfMonthPicker.getCurrentDay() + 1);
         }
 
         calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -462,7 +453,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     public void setDefaultDate(Date date) {
         if (date != null) {
             this.defaultDate = date;
-            
+
             updateDaysOfMonth();
 
             for (WheelPicker picker : pickers) {
