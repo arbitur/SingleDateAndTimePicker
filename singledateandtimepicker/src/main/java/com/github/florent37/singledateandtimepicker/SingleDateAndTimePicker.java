@@ -477,7 +477,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         }
     }
 
-    private void updateListener() {
+    public void updateListener() {
         final Date date = getDate();
         final CharSequence format = isAmPm ? FORMAT_12_HOUR : FORMAT_24_HOUR;
         final String displayed = DateFormat.format(format, date).toString();
